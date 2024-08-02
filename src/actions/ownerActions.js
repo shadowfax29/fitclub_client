@@ -10,7 +10,7 @@ export const startAddGym = (formData, setLoading, resetForm) => {
                     authorization: localStorage.getItem("token")
                 }
             })
-            localStorage.setItem("count", 1)
+         
             toast.success("gym added")
             dispatch({ type: "ADD_GYM", payload: res.data })
             setLoading(false)

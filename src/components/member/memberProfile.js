@@ -11,7 +11,7 @@ export default function MemberProfile() {
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(() => {
         const storedEdit = localStorage.getItem("editMode");
-        return storedEdit ? JSON.parse(storedEdit) : false;
+        return storedEdit ? storedEdit : false;
     });
     useEffect(() => {
         if (user) {
@@ -69,7 +69,7 @@ export default function MemberProfile() {
             formData.append("weight", weight);
             formData.append("height", height);
             formData.append("gender", gender);
-            if (profilePhoto) {
+            if (!edit) {
                 dispatch(editMemberProfile(formData, id, toast,setLoading));
             } else {
                 dispatch(addMemberProfile(formData, setEdit, edit, toast,setLoading));
@@ -116,9 +116,13 @@ if(loading){
                 </div>
                 <div className="card shadow-lg p-3 mb-5 bg-body-tertiary rounded-4 border-dark" style={{ width: "18rem" }}>
                     <div className="card-body">
-                      <button className="btn btn-primary mb-3" onClick={toggleEdit}>
-                            {edit ? "Edit" : "Cancel"}
-                        </button>
+                        
+                      {localStorage.getItem("editMode")?(<button className="btn btn-primary mb-3" onClick={toggleEdit}>
+                        {edit ? "Edit" : "Cancel"}
+                        
+                    </button>)
+                    :("")
+                      }
                         {profilePhoto && (
                             <img
                                 src={mem.profilePhoto ? mem.profilePhoto : profilePhoto}
@@ -179,11 +183,12 @@ if(loading){
                             {validationErrors.height && (
                                 <p className="text-danger">{validationErrors.height}</p>
                             )}
-                            {!edit && (
+                            {!edit? (
                                 <button className="btn btn-outline-info" type="submit">
-                                    {!edit?"update":"Submit"}
+                                    submit
                                 </button>
-                            )}
+                            ):("")}
+                           
                         </div>
                     </form>
                 </div>

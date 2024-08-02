@@ -16,7 +16,7 @@ const Members = () => {
                         authorization: localStorage.getItem("token")
                     }
                 });
-                setMembers(res.data.invoiceresult);
+                setMembers(res?.data?.invoiceresult);
             } catch (err) {
                 console.log(err);
             }
@@ -34,7 +34,7 @@ const Members = () => {
             <Navbar1 />
             <div className="container">
                 <div className='row justify-content-around p-2'>
-                    {members.length > 0 ? (
+                    {members?.length > 0 ? (
                         members.map((ele, i) => (
                             <div className="col-12 col-md-6 col-lg-4 mb-3" key={i}>
                                 <Panel header={ele?.memberId?.userName} style={{ borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }} ref={ref} toggleable>
