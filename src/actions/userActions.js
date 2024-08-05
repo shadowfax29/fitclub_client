@@ -1,5 +1,5 @@
 import axios from "../utils/axios";
-
+import { toast } from "react-toastify"
 export const startRegister = (formData, resetForm, setVersion, setLoading, navigate,toast) => {
   return async (dispatch) => {
     try {
@@ -11,7 +11,7 @@ export const startRegister = (formData, resetForm, setVersion, setLoading, navig
       setLoading(false);
       toast.success("succesfully registered")
       setVersion((prevVersion) => prevVersion + 1);
-      navigate("/login");
+     
     } catch (err) {
       setLoading(false)
       dispatch(setErrors(err.response.data.errors));
@@ -20,7 +20,7 @@ export const startRegister = (formData, resetForm, setVersion, setLoading, navig
   };
 };
 
-export const startLogin = (formData, setLoading, resetForm,navigate) => {
+export const startLogin = (formData, resetForm, setLoading,navigate) => {
   return async (dispatch) => {
     try {
       setLoading(true);
@@ -96,7 +96,6 @@ export const logOut = () => {
   return async (dispatch) => {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
- 
     dispatch({ type: "LOGOUT" });
   };
 };

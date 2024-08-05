@@ -22,10 +22,13 @@ import Cancel from "./components/member/cancel";
 import PlanDetail from "./components/member/planDetail";
 import Members from "./components/owner/members";
 import Attendance from "./components/member/attendance";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
 
+    <>
+    <ToastContainer/>
     <BrowserRouter>
       <Routes>
 
@@ -90,6 +93,7 @@ function App() {
 
 
     </BrowserRouter>
+    </>
 
   );
 }

@@ -6,6 +6,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import home from "../images/home-button.png"
 import 'leaflet/dist/leaflet.css';
+import { ScrollTop } from 'primereact/scrolltop';
 import { Link } from "react-router-dom";
 import { UilBackspace } from '@iconscout/react-unicons';
 import DateRange from "./daterange";
@@ -27,7 +28,26 @@ const GymDetail = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedSubscription, setSelectedSubscription] = useState(null);
     const [myLoc, setMyLoc] = useState({ lat: 0, lng: 0 });
+   const [check,setCheck]=useState(null)
+    useEffect(() => {
+        const fetch = async () => {
+            try {
+               
+                const res = await axios.get("/planDetail", {
+                    headers: {
+                        authorization: localStorage.getItem("token")
+                    }
+                });
+            
+                setCheck(res.data.result);
+                
+            } catch (err) {
+                console.log(err);
+            }
 
+        };
+        fetch();
+    }, []);
     useEffect(() => {
         const fetch = async () => {
             try {
@@ -50,14 +70,15 @@ const GymDetail = () => {
     }, [id]);
 
     const handleCheckOut = (subId, ele) => {
-        if(localStorage.getItem("session")){
-            toast.warning("already plan exists")
-        }
-        else{
-
+       
+        if (check === undefined) {
             setSelectedSubscription({ subId, ele });
             setModalOpen(true);
+            
         }
+        if (check && check?.status ==="Success") {
+            return toast.warning("A subscription plan already exists.");
+        } 
     };
 
     const toggleModal = () => {
@@ -154,6 +175,7 @@ const GymDetail = () => {
                 detail={detail}
                 toggleModal={toggleModal}
             />
+            <ScrollTop />
         </Container>
     );
 };

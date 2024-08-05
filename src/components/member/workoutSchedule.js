@@ -96,7 +96,7 @@ export default function WorkoutSchedule() {
     };
 
     const handleDelete = (id) => {
-        dispatch(deleteWorkoutShedule(id));
+        dispatch(deleteWorkoutShedule(id,toast));
     };
 
     const today = new Date();

@@ -52,7 +52,7 @@ const GymRequests = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container-fluid p-5">
             <div className="row ">
                 <h1 className="col">Gym Requests</h1>
                 <button className="col-2 btn m-2" onClick={handleLogout}>Logout</button>

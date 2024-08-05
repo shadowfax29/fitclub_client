@@ -1,4 +1,4 @@
 import axios from "axios"
 export default axios.create({
-    baseURL: "https://fitclub-backend-1.onrender.com",
+    baseURL: "https://fitclub-backend.onrender.com",
 })

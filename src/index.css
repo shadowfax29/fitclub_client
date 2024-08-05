@@ -382,3 +382,43 @@ input:checked + .slider:before {
 .transparent-background .p-datascroller-content {
   background-color: transparent !important;
 }
+/* Style for the QR code region */
+.qr-code-region {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 100%;
+  width: 400px;  /* Default width */
+  height: 400px;  /* Default height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .qr-code-region {
+      width: 300px;
+      height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .qr-code-region {
+      width: 250px;
+      height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-code-region {
+      width: 200px;
+      height: 200px;
+  }
+}
+
+@media (max-width: 320px) {
+  .qr-code-region {
+      width: 150px;
+      height: 150px;
+  }
+}
+#html5qr-code-region__scan_region video{
+  width: inherit;
+}

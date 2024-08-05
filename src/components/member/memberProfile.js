@@ -18,13 +18,13 @@ export default function MemberProfile() {
             setId(user._id);
         }
     }, [user]);
-    
   const [loading, setLoading] = useState(false);
     const [gender, setGender] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [profilePhoto, setProfilePhoto] = useState(null);
     const [validationErrors, setValidationErrors] = useState({});
+    const [update,setUpdate]=useState(false)
     const mem = useSelector((state) => state.member.data);
 
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function MemberProfile() {
             fetchProfile();
         }
     }, [id]);
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {
@@ -69,7 +69,8 @@ export default function MemberProfile() {
             formData.append("weight", weight);
             formData.append("height", height);
             formData.append("gender", gender);
-            if (!edit) {
+            
+            if (update) {
                 dispatch(editMemberProfile(formData, id, toast,setLoading));
             } else {
                 dispatch(addMemberProfile(formData, setEdit, edit, toast,setLoading));
@@ -103,6 +104,7 @@ export default function MemberProfile() {
     const toggleEdit = () => {
         const newEdit = !edit;
         setEdit(newEdit);
+        setUpdate(!update)
         // localStorage.setItem("editMode", JSON.stringify(newEdit));
     };
 if(loading){

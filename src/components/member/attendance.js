@@ -4,6 +4,7 @@ import axios from '../../utils/axios';
 import { DataScroller } from 'primereact/datascroller';
 import { Link } from 'react-router-dom';
 import { UilBackspace } from '@iconscout/react-unicons';
+import { ScrollTop } from 'primereact/scrolltop';
 
 
 export default function AttendanceComponent() {
@@ -64,6 +65,7 @@ export default function AttendanceComponent() {
       <div className="card">
         <DataScroller value={attendance} itemTemplate={itemTemplate} rows={5} buffer={0.4} header="Attendance Records"  />
       </div>
+    <ScrollTop/>
     </div>
   );
 }

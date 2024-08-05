@@ -1,5 +1,5 @@
 import axios from "../utils/axios"
-
+import { toast } from "react-toastify"
 export const addMemberProfile = (data, setEdit, edit, toast,setLoading) => {
 
     return async (dispatch) => {
@@ -73,7 +73,7 @@ export const addWorkoutShedule = (data, resetForm, toast) => {
         }
     }
 }
-export const deleteWorkoutShedule = (id) => {
+export const deleteWorkoutShedule = (id,toast) => {
     return async (dispatch) => {
         try {
             const res = await axios.delete(`user/workoutSchedule/${id}`, {
@@ -82,6 +82,7 @@ export const deleteWorkoutShedule = (id) => {
                 }
             }
             )
+            toast.success("workout schedule deleted successfully")
             dispatch(setErrors([]))
             dispatch({ type: "SET_DELETE_WORKOUT", payload: id })
 

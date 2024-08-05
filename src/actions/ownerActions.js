@@ -89,7 +89,7 @@ export const deleteGymImage = (gymId, trigger) => {
             })
             dispatch({ type: "DELETE_IMAGE", payload: res.data })
             trigger()
-            toast.danger("images deleted")
+            toast.error("images deleted")
             localStorage.removeItem("imageEdit")
 
         }
@@ -198,7 +198,7 @@ export const removeSubscription = (gymId, subId, trigger) => {
             })
             dispatch({ type: "REMOVE_SUBSCRIPTION", payload: subId })
             trigger()
-            toast.danger("subscription deleted")
+            toast.error("subscription deleted")
         }
         catch (err) {
             console.log(err)

@@ -62,7 +62,7 @@ const Login = () => {
     if (loading) {
         return (<Loading />)
     }
-    console.log(loading)
+    
     return (
 <div className="register d-flex justify-content-center align-items-center"style={{height:"100vh"}}>
 

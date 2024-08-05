@@ -22,7 +22,6 @@ const PlanDetail = () => {
                 });
                 setLoading(false)
                 setDetail(res.data.result);
-                console.log(res.data)
                 setType(res.data.plan[0]);
             } catch (err) {
                 console.log(err);
@@ -46,7 +45,26 @@ const PlanDetail = () => {
     if (loading) {
         return (<Loading />);
     }
-
+    if (detail?.status === "pending"||detail===undefined) {
+        return (
+            <div className='container-fluid plan'>
+                <Link to="/memberDashBoard" className='col-1 m-3 btn'>
+                    <UilBackspace size="40" color="#F6F1EE" />
+                </Link>
+                <Row className='justify-content-center'>
+                    <Col sm="6">
+                        <Card body style={{ backgroundColor: "#021526", color: "white" }}>
+                            <CardTitle>
+                                <h1 className='d-flex justify-content-between'>
+                                    No Active Plan
+                                </h1>
+                            </CardTitle>
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
     const newdate = new Date(detail?.start);
     const startDate = moment(newdate, "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (z)");
     const endDate = moment(detail?.end, "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (z)");
@@ -82,16 +100,17 @@ const PlanDetail = () => {
                                     {progressValue.toFixed(0)}%
                                 </Progress>
                
-            <Tooltip target=".custom-target-icon" />
-{console.log(type)}
-<i className="custom-target-icon pi pi-info-circle p-text-secondary p-overlay-badge m-2"
-    data-pr-tooltip={type?.benefits ? `BENEFITS:\n${type?.benefits.join('\n')}` : 'No benefits available'}
-    data-pr-position="right"
-    data-pr-at="right+5 top"
-    data-pr-my="left center-2"
-    style={{ fontSize: '1rem', cursor: 'pointer',color: 'yellow' }}>
-    
-</i>
+ <Tooltip target=".custom-target-icon"  />
+
+                        <i
+                            className="custom-target-icon pi pi-info-circle p-text-secondary p-overlay-badge m-2"
+                            data-pr-tooltip={type?.benefits ? `BENEFITS:\n${type?.benefits.join('\n')}` : 'No benefits available'}
+                            data-pr-position="right"
+                            data-pr-at="right+5 top"
+                            data-pr-my="left center-2"
+                            style={{ fontSize: '1rem', cursor: 'pointer', color: 'yellow',width:"20px" }}
+                        >
+                        </i>
            
                     </Card>
                 </Col>

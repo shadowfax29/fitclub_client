@@ -58,6 +58,17 @@ const GymForm = () => {
     if (Object.keys(errors).length === 0) {
       setLoading(true);
       try {
+        const res = await axios.get(
+          `https://api.opencagedata.com/geocode/v1/json?q=${address}&key=d7f5f9f126c84bc0afe57590c6b971d8`
+        );
+        const result = res.data.results.find((ele) => ele.components._type === 'road' || "neighbourhood");
+        if (result) {
+      
+        setGeoLocation(result.geometry);
+        }
+        else{
+          toast.error("not a valid address")
+        }
         
         const formData = {
           gymName,
@@ -119,25 +130,7 @@ const GymForm = () => {
     setEditMode(!editMode);
 
   };
-  const handleAddress=async()=>{
-    try{
-      const res = await axios.get(
-        `https://api.opencagedata.com/geocode/v1/json?q=${address}&key=d7f5f9f126c84bc0afe57590c6b971d8`
-      );
-      const result = res.data.results.find((ele) => ele.components._type === 'road' || "neighbourhood");
-      if (result) {
-    
-      setGeoLocation(result.geometry);
-      }
-      else{
-        toast.error("not a valid address")
-      }
-      
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
+ 
 
   return (
     <div className='gymadd'>
@@ -175,7 +168,7 @@ const GymForm = () => {
               </label>
               {clientError.address && <div className="text-danger">{clientError.address}</div>}
               <input
-              onBlur={handleAddress}
+              
                 type="text"
                 id="address"
                 disabled={count === 1 ? (!editMode) : false}
