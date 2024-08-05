@@ -53,6 +53,7 @@ const DateRange = ({ open, subId, ele, detail, toggleModal }) => {
             const result = stripe.redirectToCheckout({
                 sessionId: res.data.id
             });
+            window.location=res.data.url
         } catch (err) {
             console.log(err);
         }
