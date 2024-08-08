@@ -127,7 +127,7 @@ const Register = () => {
                             <Link
                                 style={{
                                     textDecoration: "none",
-                                    color: "green",
+                                    color: "blue",
                                     fontSize: "medium"
                                 }}
                                 to="/login"
