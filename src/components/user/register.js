@@ -6,6 +6,7 @@ import axios from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../loading";
 import { ToastContainer, toast } from 'react-toastify';
+
 const Register = () => {
     const serverErrors = useSelector((state) => state.user.serverErrors);
 
@@ -41,7 +42,7 @@ const Register = () => {
         };
         if (Object.keys(errors).length === 0) {
             setLoading(true);
-            dispatch(startRegister(formData, resetForm, setVersion, setLoading, navigate,toast));
+            dispatch(startRegister(formData, resetForm, setVersion, setLoading, navigate, toast));
             setClientError({});
         } else {
             setClientError(errors);
@@ -83,10 +84,10 @@ const Register = () => {
     }
 
     return (
-        <div className="register d-flex justify-content-center align-items-center"style={{height:"100vh"}}>
-            <div >
+        <div className="register d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+            <div>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group p-4 rounded-3 fs-5 " style={{backgroundColor:"#161A30",color:"white"}}>
+                    <div className="form-group p-4 rounded-3 fs-5 " style={{ backgroundColor: "#161A30", color: "white" }}>
                         <h2>Register<span><img className="m-2" src={workoutImage} width="30px" alt="img" /></span></h2>
                         <label className="form-label" htmlFor="userName">Username</label>
                         {clientError.userName && <div className="text-danger">{clientError.userName}</div>}
@@ -121,14 +122,26 @@ const Register = () => {
                         <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                         <button type="submit" className="btn btn-warning m-1">Register</button>
-                        <p>Already have an account? <Link style={{textDecoration: "none",color:"inherit"}} to="/login">Login</Link></p>
+                        <p>
+                            Already have an account?{" "}
+                            <Link
+                                style={{
+                                    textDecoration: "none",
+                                    color: "green",
+                                    fontSize: "medium"
+                                }}
+                                to="/login"
+                            >
+                                Login
+                            </Link>
+                        </p>
                         {serverErrors.length > 0 && (
                             <ul className="list-group">
                                 {serverErrors?.errors?.length ? (
                                     serverErrors.errors.map((ele, i) => <li className="list-group-item text-danger" key={i}>{ele.msg}</li>)
                                 ) : serverErrors?.error ? (
-                                    <li className="list-group-item text-danger">{serverErrors.error}</li>
-                                ) : null}
+                                    <li className="list-group-item text-danger">{serverErrors.error}</li>)
+                                    : null}
                             </ul>
                         )}
                     </div>
