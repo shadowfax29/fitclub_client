@@ -106,7 +106,7 @@ export default function WorkoutSchedule() {
         <div className='container-fluid'>
            <Link to={"/memberDashBoard"}><button className='btn btn-dark m-3'>Back</button></Link>
                        
-            {detail.subscriptionType==="premium"?(<Premium/>):(<> <ToastContainer/>
+            {detail.subscriptionType==="basic"?(<Premium/>):(<> <ToastContainer/>
             <div className="row justify-content-center">
                 <div className="row h-5 bg-dark text-light ">
                     <h1 className="font-bold">Gym Workout Schedule</h1>
