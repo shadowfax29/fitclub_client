@@ -80,19 +80,19 @@ const GymRequests = () => {
                         <tr>
                             <th scope="col">Gym Name</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Gym Owner</th>
+                          
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log(gym.gymOwner.userName)}
+                        
                         {list?.length > 0 ? (
                             list.map((gym) => (
                                 <tr key={gym._id}>
                                     <td>{gym.gymName}</td>
                                     <td>{gym.address}</td>
-                                    <td>{gym.gymOwner.userName}</td>
+                                    
                                     <td>{gym.isVerified ? "Verified" : "Not Verified"}</td>
                                     <td>
                                         {gym.isVerified ? null : (
