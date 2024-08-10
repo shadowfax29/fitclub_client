@@ -85,6 +85,7 @@ const GymRequests = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {console.log(gym.gymOwner.userName)}
                         {list?.length > 0 ? (
                             list.map((gym) => (
                                 <tr key={gym._id}>
